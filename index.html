@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"
+        integrity="sha512-MpDFIChbcXl2QgipQrt1VcPHMldRILetapBl5MPCA9Y8r7qvlwx1/Mc9hNTzY+kS5kX6PdoDq41ws1HiVNLdZA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="js/script.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="global.css">
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <div class="container-fluid">
+                <a class="navbar-brand logo" href="#">Devlima</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Transportes
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">AET</a></li>
+                            <li><a class="dropdown-item" href="#">Ipva</a></li>
+                            <li><a class="dropdown-item" href="#">Licenciamento</a></li>
+                            <!-- <li><a class="dropdown-item" href="../pecas/index.html">Controle de Peças</a></li> -->
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Assistências
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Movés</a></li>
+                            <li><a class="dropdown-item" href="#">Eletros</a></li>
+                            <!-- <li><a class="dropdown-item" href="../pecas/index.html">Controle de Peças</a></li> -->
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Admin
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Banco de Horas</a></li>
+                            <li><a class="dropdown-item" href="#">Livro de ponto</a></li>
+                            <!-- <li><a class="dropdown-item" href="../pecas/index.html">Controle de Peças</a></li> -->
+                        </ul>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="wrapp">
+        <form action="" class="form needs-validation" novalidate id="content">
+            <h4>Pedidos de Assistência </h4>
+
+            <div class="cliente-wrapp">
+
+                <div class="form-floating mb-1 cliente">
+                    <input type="text" class="form-control validate" required name="nome_cliente"
+                        placeholder="name@example.com">
+                    <label for="floatingInput">Nome do Cliente</label>
+                </div>
+                <div class="form-floating cliente  ms-1">
+                    <input type="text" class="form-control validate" name="venda" required placeholder="Password">
+                    <label for="floatingPassword">Núm da Venda</label>
+                </div>
+                <div class="form-floating cliente  ms-1">
+                    <input type="text" class="form-control validate" name="os" required placeholder="Password">
+                    <label for="floatingPassword">Núm da OS</label>
+                </div>
+                <div class="form-floating cliente  ms-1">
+                    <input type="tel" class="form-control validate" name="telefone" required placeholder="Password">
+                    <label for="floatingPassword">Telefone</label>
+                </div>
+            </div>
+            <div class="endereco-wrapp">
+                <div class="form-floating mb-1 endereco">
+                    <input type="text" class="form-control validate" name="endereco_cliente" required
+                        placeholder="name@example.com">
+                    <label for="floatingInput">Endereço</label>
+                </div>
+                <div class="form-floating endereco  ms-1">
+                    <input type="text" class="form-control validate" name="bairro_cliente" required
+                        placeholder="Password">
+                    <label for="floatingPassword">Bairro</label>
+                </div>
+            </div>
+
+
+            <div class="produto-wrapp">
+
+                <div class="form-floating mb-1 produto">
+                    <input type="text" class="form-control validate" name="produto" required
+                        placeholder="name@example.com">
+                    <label for="floatingInput">Produto</label>
+                </div>
+
+            </div>
+            <div class="peca-wrapp">
+                <div class="form-floating peca  ms-1">
+                    <button type="button" class="btn btn-primary btn-add">Adicionar</button>
+                </div>
+                <div class="form-floating mb-1 peca">
+                    <input type="text" class="form-control codigo input-produto " name="codigo" required
+                        placeholder="name@example.com">
+                    <label for="floatingInput">Código</label>
+                </div>
+                <div class="form-floating peca  ms-1">
+                    <input type="text" class="form-control peca-item input-produto " name="peca" required
+                        placeholder="Password">
+                    <label for="floatingPassword">Peça</label>
+                </div>
+                <div class="form-floating ms-1 peca">
+                    <input type="text" class="form-control cor input-produto " name="cor" required
+                        placeholder="name@example.com">
+                    <label for="floatingInput">Cor</label>
+                    <strong></strong>
+                </div>
+                <div class="form-floating peca  ms-1 ">
+                    <input type="number" class="form-control qde input-produto " name="qde" required
+                        placeholder="Password">
+                    <label for="floatingPassword">Qde</label>
+                </div>
+                <div class="form-floating peca  ms-1">
+                    <button type="button" class="btn btn-primary btn-save">Salvar</button>
+                </div>
+            </div>
+            <div class="lista-pecas">
+
+                <table class="table table-striped table-hover table-sm ">
+
+                    <thead class="table-dark sticky-top pecas">
+                        <tr>
+                            <th id="th-cod">Código</th>
+                            <th id="th-pec">Descrição da Peça</th>
+                            <th id="th-cor">Cor da Peça</th>
+                            <th>Qtde</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="observacao">
+                <div class="form-floating">
+                    <textarea class="form-control obs ms-1 validate" name="obs" placeholder="Leave a comment here"
+                        required id="floatingTextarea2" style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Observações</label>
+                </div>
+            </div>
+            <div class="footer footer-f  solicitante mb-1">
+                <select class="form-select form-control select_loja validate" id="lojas" name="lojas"
+                    aria-label="Default select example">
+                    <option value="" disabled selected>Selecione a Loja</option>
+                    <option value="0">Matriz</option>
+                    <option value="1">Palhano</option>
+                    <option value="2">Jaguaruana</option>
+                    <option value="3">Deposito</option>
+                    <option value="4">Filial Russas</option>
+                    <option value="5">Limoeiro do Norte</option>
+                    <option value="6">Itaiçaba</option>
+                    <option value="7">Filial de Flores</option>
+                    <option value="8">Aracati</option>
+                </select>
+
+                <div class="form-floating footer-f ms-1">
+                    <input type="text" class="form-control validate" maxlength="12" name="solicitante" required
+                        placeholder="name@example.com">
+                    <label for="floatingInput">Solicitante</label>
+                </div>
+
+                <div class="form-floating footer-f ms-1">
+                    <input type="text" class="form-control validate assistencia" name="assistencia" required
+                        placeholder="name@example.com">
+                    <label for="floatingInput">Assistência</label>
+                </div>
+
+            </div>
+            <div class="button">
+
+                <button type="submit" id="salvar-pdf" class="btn btn-primary btn-lg gerar-pdf ">Salvar</button>
+                <button type="submit" id="gerar-pdf" class="btn btn-danger btn-lg gerar-pdf">Gerar-PDF</button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+
+
+</body>
+
+</html>
