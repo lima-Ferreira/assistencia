@@ -1,206 +1,260 @@
 import { options } from "./modules/selects.js";
-import validate from "./modules/validate.js";
 
-const formValidate = validate();
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("form");
+  const tbody = document.querySelector("tbody");
 
-const element = document.getElementById("lojas");
-const form = document.querySelector("form");
-const inputValidate = document.querySelectorAll(".form-control");
-const btnSalvarPdf = document.getElementById("salvar-pdf");
-const btnGerarPdf = document.querySelectorAll(".gerar-pdf");
-const btnAdd = document.querySelector(".btn-add");
-const btnSave = document.querySelector(".btn-save");
-const produtos = document.querySelectorAll(".input-produto");
-const body = document.querySelector("tbody");
-const td = document.createElement("td:las-child");
+  const btnAdd = document.querySelector(".add");
+  const btnSave = document.querySelector(".save");
+  const btnPdf = document.querySelector(".pdf");
 
-const inputCliente = inputValidate[0];
-const inputVenda = inputValidate[1];
-const inputOs = inputValidate[2];
-const inputFone = inputValidate[3];
-const inputEnd = inputValidate[4];
-const inputBairro = inputValidate[5];
-const inputProduto = inputValidate[6];
-const inputCodigo = inputValidate[7];
-const inputPeca = inputValidate[8];
-const inputCor = inputValidate[9];
-const inputQde = inputValidate[10];
-const inputObs = inputValidate[11];
-const inputLojas = inputValidate[12];
-const inputSolic = inputValidate[13];
-const assistencia = inputValidate[14];
+  const inputCodigo = document.querySelector('[name="codigo"]');
+  const inputPeca = document.querySelector('[name="peca"]');
+  const inputCor = document.querySelector('[name="cor"]');
+  const inputQde = document.querySelector('[name="qde"]');
 
-const arrButton = Array.from(btnGerarPdf);
-arrButton[1].style.display = "none";
+  // ADD PEÇA
+  btnAdd.addEventListener("click", () => {
+    if (
+      !inputCodigo.value ||
+      !inputPeca.value ||
+      !inputCor.value ||
+      !inputQde.value
+    ) {
+      alert("Preencha os dados da peça");
+      return;
+    }
 
-btnSave.addEventListener("click", (e) => {
-  if (
-    !inputCodigo.value ||
-    !inputPeca.value ||
-    !inputCor.value ||
-    !inputQde.value
-  )
-    return;
-  const tr = document.createElement("tr");
-  tr.title = "click botão esquerdo para excluir";
+    const tr = document.createElement("tr");
 
-  for (let i = 0; i < produtos.length; i++) {
-    const td = document.createElement("td");
-    td.classList.add("delete");
-    td.innerHTML = `${produtos[i].value}`;
-    body.appendChild(tr);
-    tr.appendChild(td);
-  }
-  document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("delete")) {
-      let resposta = confirm("deseja excluir este item?");
-      if (resposta) {
+    tr.innerHTML = `
+      <td>${inputCodigo.value}</td>
+      <td>${inputPeca.value}</td>
+      <td>${inputCor.value}</td>
+      <td>${inputQde.value}</td>
+    `;
+
+    tbody.appendChild(tr);
+
+    inputCodigo.value = "";
+    inputPeca.value = "";
+    inputCor.value = "";
+    inputQde.value = "";
+  });
+
+  // REMOVE
+  tbody.addEventListener("click", (e) => {
+    if (e.target.tagName === "TD") {
+      if (confirm("Excluir item?")) {
         e.target.parentElement.remove();
-      } else {
-        return;
       }
     }
   });
-  inputCodigo.value;
-  inputPeca.value;
-  inputCor.value;
-  inputQde.value;
-});
 
-btnAdd.addEventListener("click", () => {
-  inputCodigo.value = "";
-  inputPeca.value = "";
-  inputCor.value = "";
-  inputQde.value = "";
-  inputCodigo.focus();
-});
-
-const dataForm = () => {
-  const dataForm = new FormData(form);
-  const data = Object.fromEntries(dataForm);
-  if (formValidate) {
-    return false;
-  } else {
-    return data;
+  function getData() {
+    return Object.fromEntries(new FormData(form));
   }
-};
 
-const activeBtn = () => {
-  arrButton.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      if (
-        !inputCliente.value ||
-        !inputVenda.value ||
-        !inputOs.value ||
-        !inputFone.value ||
-        !inputEnd.value ||
-        !inputBairro.value ||
-        !inputProduto.value ||
-        !inputCodigo.value ||
-        !inputPeca.value ||
-        !inputCor.value ||
-        !inputQde.value ||
-        !inputObs.value ||
-        !inputLojas.value ||
-        !inputSolic.value ||
-        !assistencia.value
-      ) {
-        return;
-      } else {
-        arrButton[1].style.display = "block";
-      }
-    });
-  });
-};
+  function validar(data) {
+    const ignorar = ["codigo", "peca", "cor", "qde"];
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  dataForm();
-  activeBtn();
-};
-
-const handlePdf = (e) => {
-  e.preventDefault();
-  const data = dataForm();
-
-  const option = {
-    year: "numeric",
-    month: "long" || "short" || "numeric",
-    weekday: "long" || "short",
-    day: "numeric",
-  };
-
-  const locale = "pt-br";
-  const calendar = new Date().toLocaleDateString(locale, option);
-
-  let content = document.getElementById("content");
-
-  options.forEach((opt, indexOpt) => {
-    const elementSelectOpt = +element.options[element.selectedIndex].value;
-
-    if (indexOpt === elementSelectOpt) {
-      for (let i = 0; i < produtos.length; i++) {
-        content = `<div class='content-container'>
-        <div class='header-1'> <div><strong> <p>O.S</p> <p>Nº${data.os}</p></strong></div></div>
-    <div class='header'> 
-        <img class='img' src="./img/Logo_loj.jpg">
-    <div class='select'>
-      <div> <p> <strong>Loja: </strong>${opt.loja} </p></div>
-      <div> <p> <strong>Endereço: </strong>${opt.endereco} </p></div>
-      <div> <p> <strong>Email: </strong>${opt.email} </p></div>
-      <div> <p> <strong>Contato: </strong>${opt.contato} </p></div>
-    </div>
-    </div>
-     
-    <hr>
-        <h4> <strong>Dados dos Clientes</strong></h4>
-    <div class='dados-cliente'>
-        <p> <strong>Nome do Cliente: </strong>${data.nome_cliente} </p>
-        <p> <strong>Endereço: </strong>${data.endereco_cliente} </p>
-        <p> <strong>Bairro: </strong>${data.bairro_cliente} </p>
-        <p> <strong>Núm da venda: </strong>${data.venda} </p>
-        <p> <strong>Telefone: </strong>${data.telefone} </p>
-        <p> <strong>Número da OS: </strong>${data.os} </p>
-    </div>
-        <hr>
-    <div class='dados-pecas'>
-        <h4 class='dados_prod'> <strong>Dados das Peças</strong></h4>
-        <h3 class='d_prod'><strong>${data.produto} </strong></h3>        
-        <table class="table table-striped table-hover table-sm ">
-        <thead class="table-dark sticky-top pecas">
-            <tr>
-                <th id="th-cod">Código</th>
-                <th id="th-pec">Descrição da Peça</th>
-                <th id="th-cor">Cor da Peça</th>
-                <th id="th-qua">Qtde</th>
-            </tr>
-        </thead>
-        <tbody> <tr class="dt-line">${body.innerHTML}</tr></tbody>
-    </table>   
-    <hr>
-    <div class='ob'> 
-    <p><strong>Observação:</strong></p> 
-    <span class='obse'>${data.obs}</span>
-    </div> 
-    </div>
-    <div class='sol'>
-        <p class='solicitante'><strong>Att: </strong> ${data.solicitante}</p> 
-        <p class='cidade'><strong>${opt.cidade}-ce </strong>  <span class='cal'> ${calendar}</span></p> 
-    </div>
-       `;
-      }
+    for (let key in data) {
+      if (ignorar.includes(key)) continue;
+      if (!data[key]) return false;
     }
+
+    return true;
+  }
+
+  btnSave.addEventListener("click", () => {
+    const data = getData();
+
+    if (!validar(data)) {
+      alert("Preencha os campos obrigatórios");
+      return;
+    }
+
+    alert("Salvo!");
   });
 
-  var opt = {
-    margin: [5, 5, 5, 5],
-    filename: data.assistencia + "_OS_" + data.os + ".pdf",
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-  };
+  btnPdf.addEventListener("click", () => {
+    const data = getData();
 
-  html2pdf().from(content).set(opt).save();
-};
+    if (!validar(data)) {
+      alert("Preencha os campos obrigatórios");
+      return;
+    }
 
-btnSalvarPdf.addEventListener("click", handleSubmit);
-btnGerarPdf[1].addEventListener("click", handlePdf);
+    const dataAtual = new Date();
+
+    const dataFormatada = dataAtual.toLocaleDateString("pt-BR", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+
+    const hora = dataAtual.toLocaleTimeString("pt-BR");
+
+    const selectLoja = document.querySelector('[name="lojas"]');
+
+    function getLojaSelecionada() {
+      const index = selectLoja.selectedIndex - 1;
+
+      if (index < 0) return null;
+
+      return options[index];
+    }
+
+    // ===== DADOS DA LOJA (ajusta se quiser)
+    const loja = getLojaSelecionada();
+
+    function formatarNomeArquivo(nome) {
+      return nome
+        .trim()
+        .replace(/\s+/g, "_") // espaço → _
+        .replace(/[^\w\-]/g, ""); // remove caracteres estranhos
+    }
+
+    function limparTexto(texto) {
+      return texto
+        .toString()
+        .trim()
+        .normalize("NFD") // remove acento
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, "_") // espaço → _
+        .replace(/[^\w\-]/g, ""); // remove resto
+    }
+
+    if (!loja) {
+      alert("Selecione a loja");
+      return;
+    }
+
+    // fornecedor (assistência)
+    const fornecedor = limparTexto(data.assistencia);
+
+    // cidade da loja
+    const cidade = limparTexto(loja.cidade);
+
+    // data formatada
+    const hoje = new Date();
+    const dataNome = hoje.toLocaleDateString("pt-BR").replace(/\//g, "-");
+
+    // nome final
+    const nomeArquivo = `${fornecedor}_${cidade}_OS_${data.os}_${dataNome}.pdf`;
+
+    const conteudo = `
+    <div style="font-family: Arial; padding:20px; font-size:12px;">
+    
+      <!-- HEADER -->
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #000; padding-bottom:10px; margin-bottom:15px;">
+    
+        <!-- ESQUERDA -->
+        <div style="display:flex; gap:15px; align-items:center;">
+          <img src="img/logo.jpg" style="height:70px;">
+    
+          <div>
+            <strong>${loja.loja}</strong><br>
+            ${loja.endereco}<br>
+            ${loja.contato}<br>
+            ${loja.email}<br>
+            ${loja.cidade}
+          </div>
+        </div>
+    
+        <!-- DIREITA -->
+        <div style="text-align:right;">
+          <h2 style="margin:0;">ORDEM DE SERVIÇO</h2>
+          <strong style="font-size:18px;">Nº ${data.os}</strong>
+        </div>
+    
+      </div>
+    
+      <!-- CLIENTE -->
+      <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+        <div><strong>Cliente:</strong> ${data.nome_cliente}</div>
+        <div><strong>Telefone:</strong> ${data.telefone}</div>
+        <div><strong>Venda:</strong> ${data.venda}</div>
+      </div>
+    
+      <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
+        <div><strong>Endereço:</strong> ${data.endereco_cliente}</div>
+        <div><strong>Bairro:</strong> ${data.bairro_cliente}</div>
+      </div>
+    
+      <!-- PRODUTO -->
+      <div style="margin-bottom:10px;">
+        <strong>Produto:</strong> ${data.produto}
+      </div>
+    
+      <!-- TABELA -->
+      <table style="width:100%; border-collapse: collapse; margin-top:10px;">
+        <thead>
+          <tr style="background:#000; color:#fff;">
+            <th style="padding:8px;">Código</th>
+            <th style="padding:8px;">Descrição</th>
+            <th style="padding:8px;">Cor</th>
+            <th style="padding:8px;">Qtd</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tbody.innerHTML}
+        </tbody>
+      </table>
+    
+      <!-- OBS -->
+      <div style="margin-top:15px;">
+        <strong>Observações:</strong>
+        <div style="border:1px solid #000; min-height:60px; padding:5px;">
+          ${data.obs}
+        </div>
+      </div>
+    
+      <!-- FOOTER -->
+      <div style="margin-top:30px; display:flex; justify-content:space-between; align-items:center;">
+    
+        <div>
+          <strong>Solicitante:</strong> ${data.solicitante}
+        </div>
+    
+        <div style="text-align:right;">
+          <strong>${loja.cidade} - CE</strong><br>
+          ${dataFormatada} - ${hora}
+        </div>
+    
+      </div>
+    
+    </div>
+    `;
+
+    // ===== CONFIG PDF =====
+    const opt = {
+      margin: [5, 5, 5, 5],
+      filename: nomeArquivo,
+
+      image: {
+        type: "jpeg",
+        quality: 1,
+      },
+
+      html2canvas: {
+        scale: 3,
+        useCORS: true,
+        logging: false,
+      },
+
+      jsPDF: {
+        unit: "mm",
+        format: "a4",
+        orientation: "landscape",
+      },
+
+      pagebreak: {
+        mode: ["avoid-all", "css", "legacy"],
+      },
+    };
+
+    html2pdf().from(conteudo).set(opt).save();
+  });
+});
