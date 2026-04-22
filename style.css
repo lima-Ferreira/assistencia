@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f1f5f9;
+}
+
+.layout {
+  display: flex;
+}
+
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #111827;
+  color: #fff;
+  padding: 20px;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.linha-peca {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.linha-peca input {
+  height: 40px;
+}
+
+/* tamanhos */
+.linha-peca .produto {
+  flex: 2;
+
+}
+
+.linha-peca input[name="codigo"] {
+  width: 300px;
+}
+
+.linha-peca .peca {
+  flex: 3;
+  /* 👈 maior espaço */
+}
+
+.linha-peca input[name="cor"] {
+  width: 300px;
+}
+
+.linha-peca input[name="qde"] {
+  width: 70px;
+  text-align: center;
+}
+
+.linha-peca .add {
+
+  width: 140px;
+  background: #2563eb;
+  color: #fff;
+}
+
+.full {
+  grid-column: span 3;
+  margin-bottom: 6px;
+}
+
+input,
+select,
+textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.add {
+  margin-top: -2px;
+  background: blue;
+  color: #fff;
+  height: 40px;
+}
+
+.save {
+  background: green;
+  color: #fff;
+}
+
+.pdf {
+  background: red;
+  color: #fff;
+}
+
+.table-box {
+  margin-top: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #111;
+  color: #fff;
+  padding: 8px;
+}
+
+td {
+  padding: 6px;
+  border: 1px solid #ddd;
+}
