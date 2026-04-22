@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
         <!-- ESQUERDA -->
         <div style="display:flex; gap:15px; align-items:center;">
-          <img src="img/logo.jpg" style="height:70px;">
+          <img src="img/Logo.jpg" style="height:70px;">
     
           <div>
             <strong>${loja.loja}</strong><br>
