@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     // ===== CONFIG PDF =====
     const opt = {
-      margin: [5, 5, 5, 5],
+      margin: [3, 3, 3, 3],
       filename: nomeArquivo,
 
       image: {
@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
 
       html2canvas: {
-        scale: 2,
+        scale: 1.2,
         useCORS: true,
         logging: false,
       },
