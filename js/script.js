@@ -146,11 +146,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const conteudo = `
     <div style="
-    width:1122px;
-    height:794px;
+    width:100%;
+    max-width:1000px;
+    margin:0 auto;
+    min-height:700px;
     display:flex;
     flex-direction:column;
-    align-items:center;
     padding:20px;
     box-sizing:border-box;
     font-family:Arial, sans-serif;
@@ -258,12 +259,12 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     // ===== CONFIG PDF =====
     const opt = {
-      margin: [0, 0, 0, 0],
+      margin: [5, 5, 5, 5],
       filename: nomeArquivo,
 
       image: {
         type: "jpeg",
-        quality: 1,
+        quality: 2,
       },
 
       html2canvas: {
