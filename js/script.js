@@ -146,13 +146,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const conteudo = `
     <div style="
-      width:1000px;
-      min-height:700px;
-      display:flex;
-      flex-direction:column;
-      font-family:Arial, sans-serif;
-      font-size:12px;
-    ">
+    width:1122px;
+    height:794px;
+    display:flex;
+    flex-direction:column;
+    padding:20px;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+    font-size:12px;
+  ">
     
       <!-- HEADER -->
       <div style="
@@ -186,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     
       <!-- CONTEÚDO -->
-      <div style="flex:1;">
+      <div style="flex:1; display:flex; flex-direction:column;">
     
         <!-- CLIENTE -->
         <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
@@ -222,28 +224,23 @@ document.addEventListener("DOMContentLoaded", () => {
         </table>
     
         <!-- OBS -->
-        <div style="margin-top:12px;">
-          <strong>Observações:</strong>
-          <div style="
-            border:1px solid #000;
-            min-height:80px;
-            padding:6px;
-            margin-top:4px;
-          ">
-            ${data.obs}
-          </div>
+        <div style="margin-top:auto;">
+        <strong>Observações:</strong>
+        <div style="border:1px solid #000; min-height:100px; padding:6px;">
+          ${data.obs}
         </div>
+      </div>
     
       </div>
     
       <!-- FOOTER -->
       <div style="
-        display:flex;
-        justify-content:space-between;
-        margin-top:20px;
-        border-top:1px solid #000;
-        padding-top:10px;
-      ">
+      display:flex;
+      justify-content:space-between;
+      border-top:1px solid #000;
+      padding-top:10px;
+      margin-top:10px;
+    ">
     
         <div>
           <strong>Solicitante:</strong> ${data.solicitante}
@@ -260,7 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     // ===== CONFIG PDF =====
     const opt = {
-      margin: [3, 3, 3, 3],
+      margin: [0, 0, 0, 0],
       filename: nomeArquivo,
 
       image: {
@@ -269,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
 
       html2canvas: {
-        scale: 1.2,
+        scale: 1,
         useCORS: true,
         logging: false,
       },
