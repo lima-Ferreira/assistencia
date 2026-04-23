@@ -44,7 +44,7 @@ body {
   gap: 6px;
   align-items: center;
   justify-content: center;
-   flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .linha-peca input {
