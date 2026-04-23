@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const nomeArquivo = `${fornecedor}_${cidade}_OS_${data.os}_${dataNome}.pdf`;
 
     const conteudo = `
-    <div style="font-family: Arial; padding:20px; font-size:12px;">
+    <div style="width:1000px; min-height:700px; display:flex; flex-direction:column; justify-content:space-between;">
     
       <!-- HEADER -->
       <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #000; padding-bottom:10px; margin-bottom:15px;">
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     
       <!-- FOOTER -->
-      <div style="margin-top:30px; display:flex; justify-content:space-between; align-items:center;">
+      <div style="margin-top:auto; display:flex; justify-content:space-between;">
     
         <div>
           <strong>Solicitante:</strong> ${data.solicitante}
@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
 
       html2canvas: {
-        scale: 3,
+        scale: 2,
         useCORS: true,
         logging: false,
       },
