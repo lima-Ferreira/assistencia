@@ -146,17 +146,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const conteudo = `
     <div style="
-    width:100%;
-    max-width:1000px;
-    margin:0 auto;
-    min-height:700px;
-    display:flex;
-    flex-direction:column;
-    padding:20px;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-    font-size:12px;
-  ">
+      width:100%;
+      max-width:1000px;
+      margin:0 auto;
+      min-height:700px;
+      display:flex;
+      flex-direction:column;
+      padding:20px;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+      font-size:12px;
+    ">
     
       <!-- HEADER -->
       <div style="
@@ -168,7 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
         margin-bottom:15px;
       ">
     
-        <!-- ESQUERDA -->
         <div style="display:flex; gap:15px; align-items:center;">
           <img src="img/Logo.jpg" style="height:60px;">
     
@@ -181,7 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
     
-        <!-- DIREITA -->
         <div style="text-align:right;">
           <h2 style="margin:0; font-size:18px;">ORDEM DE SERVIÇO</h2>
           <strong style="font-size:16px;">Nº ${data.os}</strong>
@@ -189,8 +187,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
       </div>
     
-      <!-- CONTEÚDO -->
-      <div style="flex:1; display:flex; flex-direction:column;">
+      <!-- CONTEÚDO (BLOCO QUE CRESCE) -->
+      <div style="
+        flex:1;
+        display:flex;
+        flex-direction:column;
+      ">
     
         <!-- CLIENTE -->
         <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
@@ -225,24 +227,29 @@ document.addEventListener("DOMContentLoaded", () => {
           </tbody>
         </table>
     
-        <!-- OBS -->
+        <!-- OBS (EMPURRA PRA BAIXO QUANDO NECESSÁRIO) -->
         <div style="margin-top:auto;">
-        <strong>Observações:</strong>
-        <div style="border:1px solid #000; min-height:100px; padding:6px;">
-          ${data.obs}
+          <strong>Observações:</strong>
+          <div style="
+            border:1px solid #000;
+            min-height:80px;
+            padding:6px;
+            margin-top:4px;
+          ">
+            ${data.obs}
+          </div>
         </div>
-      </div>
     
       </div>
     
-      <!-- FOOTER -->
+      <!-- FOOTER (FIXO EMBAIXO) -->
       <div style="
-      display:flex;
-      justify-content:space-between;
-      border-top:1px solid #000;
-      padding-top:10px;
-      margin-top:10px;
-    ">
+        display:flex;
+        justify-content:space-between;
+        border-top:1px solid #000;
+        padding-top:10px;
+        margin-top:10px;
+      ">
     
         <div>
           <strong>Solicitante:</strong> ${data.solicitante}
