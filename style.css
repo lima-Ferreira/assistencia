@@ -35,7 +35,7 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 10px;
 }
 
@@ -44,7 +44,7 @@ body {
   gap: 6px;
   align-items: center;
   justify-content: center;
-  flex-wrap: nowrap;
+   flex-wrap: wrap;
 }
 
 .linha-peca input {
@@ -124,6 +124,11 @@ button {
   margin-top: 10px;
   max-height: 200px;
   overflow-y: auto;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
 }
 
 table {
