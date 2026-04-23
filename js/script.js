@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
     height:794px;
     display:flex;
     flex-direction:column;
+    align-items:center;
     padding:20px;
     box-sizing:border-box;
     font-family:Arial, sans-serif;
