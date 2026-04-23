@@ -145,16 +145,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const nomeArquivo = `${fornecedor}_${cidade}_OS_${data.os}_${dataNome}.pdf`;
 
     const conteudo = `
-    <div style="width:1000px; min-height:700px; display:flex; flex-direction:column; justify-content:space-between;">
+    <div style="
+      width:1000px;
+      min-height:700px;
+      display:flex;
+      flex-direction:column;
+      font-family:Arial, sans-serif;
+      font-size:12px;
+    ">
     
       <!-- HEADER -->
-      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #000; padding-bottom:10px; margin-bottom:15px;">
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        border-bottom:2px solid #000;
+        padding-bottom:10px;
+        margin-bottom:15px;
+      ">
     
         <!-- ESQUERDA -->
         <div style="display:flex; gap:15px; align-items:center;">
-          <img src="img/Logo.jpg" style="height:70px;">
+          <img src="img/Logo.jpg" style="height:60px;">
     
-          <div>
+          <div style="line-height:1.4;">
             <strong>${loja.loja}</strong><br>
             ${loja.endereco}<br>
             ${loja.contato}<br>
@@ -165,54 +179,71 @@ document.addEventListener("DOMContentLoaded", () => {
     
         <!-- DIREITA -->
         <div style="text-align:right;">
-          <h2 style="margin:0;">ORDEM DE SERVIÇO</h2>
-          <strong style="font-size:18px;">Nº ${data.os}</strong>
+          <h2 style="margin:0; font-size:18px;">ORDEM DE SERVIÇO</h2>
+          <strong style="font-size:16px;">Nº ${data.os}</strong>
         </div>
     
       </div>
     
-      <!-- CLIENTE -->
-      <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-        <div><strong>Cliente:</strong> ${data.nome_cliente}</div>
-        <div><strong>Telefone:</strong> ${data.telefone}</div>
-        <div><strong>Venda:</strong> ${data.venda}</div>
-      </div>
+      <!-- CONTEÚDO -->
+      <div style="flex:1;">
     
-      <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
-        <div><strong>Endereço:</strong> ${data.endereco_cliente}</div>
-        <div><strong>Bairro:</strong> ${data.bairro_cliente}</div>
-      </div>
-    
-      <!-- PRODUTO -->
-      <div style="margin-bottom:10px;">
-        <strong>Produto:</strong> ${data.produto}
-      </div>
-    
-      <!-- TABELA -->
-      <table style="width:100%; border-collapse: collapse; margin-top:10px;">
-        <thead>
-          <tr style="background:#000; color:#fff;">
-            <th style="padding:8px;">Código</th>
-            <th style="padding:8px;">Descrição</th>
-            <th style="padding:8px;">Cor</th>
-            <th style="padding:8px;">Qtd</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${tbody.innerHTML}
-        </tbody>
-      </table>
-    
-      <!-- OBS -->
-      <div style="margin-top:15px;">
-        <strong>Observações:</strong>
-        <div style="border:1px solid #000; min-height:60px; padding:5px;">
-          ${data.obs}
+        <!-- CLIENTE -->
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <div><strong>Cliente:</strong> ${data.nome_cliente}</div>
+          <div><strong>Telefone:</strong> ${data.telefone}</div>
+          <div><strong>Venda:</strong> ${data.venda}</div>
         </div>
+    
+        <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+          <div><strong>Endereço:</strong> ${data.endereco_cliente}</div>
+          <div><strong>Bairro:</strong> ${data.bairro_cliente}</div>
+        </div>
+    
+        <!-- PRODUTO -->
+        <div style="margin-bottom:10px;">
+          <strong>Produto:</strong> ${data.produto}
+        </div>
+    
+        <!-- TABELA -->
+        <table style="width:100%; border-collapse:collapse; margin-top:10px;">
+          <thead>
+            <tr style="background:#000; color:#fff;">
+              <th style="padding:6px;">Código</th>
+              <th style="padding:6px;">Descrição</th>
+              <th style="padding:6px;">Cor</th>
+              <th style="padding:6px;">Qtd</th>
+            </tr>
+          </thead>
+    
+          <tbody>
+            ${tbody.innerHTML}
+          </tbody>
+        </table>
+    
+        <!-- OBS -->
+        <div style="margin-top:12px;">
+          <strong>Observações:</strong>
+          <div style="
+            border:1px solid #000;
+            min-height:80px;
+            padding:6px;
+            margin-top:4px;
+          ">
+            ${data.obs}
+          </div>
+        </div>
+    
       </div>
     
       <!-- FOOTER -->
-      <div style="margin-top:auto; display:flex; justify-content:space-between;">
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        margin-top:20px;
+        border-top:1px solid #000;
+        padding-top:10px;
+      ">
     
         <div>
           <strong>Solicitante:</strong> ${data.solicitante}
@@ -227,7 +258,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     </div>
     `;
-
     // ===== CONFIG PDF =====
     const opt = {
       margin: [5, 5, 5, 5],
