@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ${loja.endereco}<br>
         ${loja.contato}<br>
         ${loja.email}<br>
-        ${loja.cidade}
+        
       </div>
     </div>
 
